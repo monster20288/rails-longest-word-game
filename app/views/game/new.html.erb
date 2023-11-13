@@ -1,0 +1,26 @@
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 ">
+        <h1>New game</h1>
+        <ul class="d-flex list-unstyled text-white">
+          <% @letterarray.each do |word| %>
+            <li class="p-4 bg-info m-2 fs-2"><%= word %></li>
+          <% end %>
+        </ul>
+    </div>
+    <div class="col-md-12 mt-3">
+      <form class="row gx-3 gy-2 align-items-center" action="<%= score_path %>" method="POST" data-turbo="false">
+          <label class="form-label" for="inputword">What is the longest word you can find?</label>
+        <div class="col-sm-10 d-flex">
+          <%# Pass letter value %>
+          <%= hidden_field_tag :letters, @letters %>
+          <%# Pass Token here to check it came from this website or not %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <input type="text" class="form-control" id="inputword" name="inputword" placeholder="Add Word">
+          <button type="submit" class="btn btn-primary">Play</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
